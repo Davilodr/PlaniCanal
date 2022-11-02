@@ -339,10 +339,13 @@ button {
   border-radius: 0;
 }
 
-button.cd{ background-color: #fdb10df5;
+button.cd{ background-color: #f9ee98f5;
 }
 
-button.cp{ background-color: #f0730d;
+button.ch{ background-color: #f9ee98f5;
+}
+
+button.cp{ background-color: #ffd77b;
 }
 
 button:focus:not(:focus-visible) {

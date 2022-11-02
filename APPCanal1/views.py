@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from .models import Dias_trabajados, Personal
+from .models import Dias_trabajados, Horas_trabajadas, Personal
 from django.views.generic import ListView
 
 def Index(request):
@@ -96,6 +96,37 @@ class Borrar_Personal(DeleteView):
     template_name = "Borrar_Personal.html"
     fields =('__all__')
     success_url = '/APPCanal1/Lista_Personal/'
+    
+class HorasList(ListView):
+    model = Horas_trabajadas
+    template_name = 'Lista_Horas.html'
+    context_object_name = "ListHoras"
+
+
+class Crear_Hora(CreateView):
+    model = Horas_trabajadas
+    template_name = "Crear_Hora.html"
+    fields =('__all__')
+    success_url = '/APPCanal1/Lista_Horas/'
+
+
+class Ver_Hora(DetailView):
+    model = Horas_trabajadas
+    template_name = "Ver_horas.html"
+    context_object_name = "VerH"
+
+class Update_Horas(UpdateView):
+    model = Horas_trabajadas
+    template_name = "Actualizar_Horas.html"
+    fields =('__all__')
+    success_url = '/APPCanal1/Lista_Horas/'
+    
+    
+class Borrar_Horas(DeleteView):
+    model = Horas_trabajadas
+    template_name = "Borrar_horas.html"
+    fields =('__all__')
+    success_url = '/APPCanal1/Lista_Horas/'
 
 
 

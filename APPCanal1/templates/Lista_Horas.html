@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+
+    <h1>Lista de Horas</h1>
+
+    <ul>
+        
+        {% for horas in ListHoras %}
+            <li>
+                {{horas}}
+            </li>
+        {% endfor %}
+            
+    </ul>
+
+{% endblock contenidoQueCambia %}

@@ -24,11 +24,11 @@ class Dias_trabajados(models.Model):
         return f'Dni: {self.dni} - Dia Trabajado: {self.dia_trabajado}'
    
 
-class Horas_trabajados(models.Model):
+class Horas_trabajadas(models.Model):
     
     dni = models.IntegerField()
-    hora_trabajado = models.IntegerField()
+    hora_trabajada = models.IntegerField()
     Fecha_actual = datetime
     
     def __str__(self):
-        return f'{self.dni} - {self.hora_trabajado}'
+        return f'{self.dni} - {self.hora_trabajada}'
