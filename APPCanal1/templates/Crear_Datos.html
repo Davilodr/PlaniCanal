@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+        
+   <div>
+       <button class = "cd"><a href="{% url 'CrearDias' %}">Cargar - Dias</a></button>
+       <button class = "cp"> <a href="{% url 'CreaPersonal' %}">Cargar - Personal</a></button>
+
+   </div>
+
+{% endblock contenidoQueCambia %}

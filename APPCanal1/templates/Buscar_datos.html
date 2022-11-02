@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+        
+   <div>
+       <button class = "bd"><a href="{% url 'BuscarDias' %}">Buscar - Dias</a></button>
+       <button class = "bp"> <a href="{% url 'BuscarPersonal' %}">Buscar - Personal</a></button>
+
+   </div>
+
+{% endblock contenidoQueCambia %}

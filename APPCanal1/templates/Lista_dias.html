@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+
+    <h1>Lista de dias</h1>
+
+    <ul>
+        
+        {% for dias in ListaDias %}
+            <li>
+                <a href="{% url 'DetalleDias' dias.id %}">
+                    {{dias}}
+                </a>
+              
+            </li>
+        
+            <div>
+                <button>
+                    <a href="{% url 'BorrarDias' dias.id %}">Eliminar</a>
+                </button>
+                <button>
+                    <a href="{% url 'UpdateDias' dias.id %}">Editar</a>
+                </button>
+            </div>
+        {% endfor %}
+            
+    </ul>
+
+{% endblock contenidoQueCambia %}

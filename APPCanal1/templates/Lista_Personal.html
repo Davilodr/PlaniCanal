@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+
+    <h1>Lista de Personal</h1>
+
+    <ul>
+        
+        {% for Persona in ListaPers %}
+            <li>
+                
+                {{Persona}}
+                
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'BorrarPersonal' Persona.id %}">Eliminar</a>
+                </button>
+                <button>
+                    <a href="{% url 'UpdatePersonal' Persona.id %}">Editar</a>
+                </button>
+            </div>
+        {% endfor %}
+            
+    </ul>
+
+{% endblock contenidoQueCambia %}

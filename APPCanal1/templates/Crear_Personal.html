@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+        
+    <form action="{% url 'CreaPersonal' %}" method="POST">{% csrf_token %}
+
+        {{form.as_p}}
+        
+        <input type="submit" value="Registrar"/>
+
+    </form>
+
+{% endblock contenidoQueCambia %}
