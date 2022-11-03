@@ -122,9 +122,8 @@ h1, .h1 {
 h1.prox{color: #974a2d;
   font-size:150px;
   padding-top:250px;
-  margin-left:-60px;
-  
-}
+
+} 
 
 h2, .h2 {
   font-size: calc(1.475rem + 2.7vw);
@@ -144,6 +143,10 @@ h3, .h3 {
   }
 }
 
+h4.ses{color: black;
+
+}
+
 h4, .h4 {
   font-size: calc(1.275rem + 0.3vw);
 }
@@ -153,12 +156,28 @@ h4, .h4 {
   }
 }
 
+h4.lg{
+  color: black;
+}
+
+h4.reg{
+  color: #c85d37;
+}
+
 h5, .h5 {
   font-size: 1.25rem;
 }
 
 h6, .h6 {
   font-size: 1rem;
+}
+
+a.cls{
+  color: black;
+}
+
+a.ins{
+  color: black;
 }
 
 p {
@@ -592,6 +611,10 @@ progress {
   .display-6 {
     font-size: 2.5rem;
   }
+}
+
+div.bie{color: rgb(83, 81, 81);
+
 }
 
 li.lp{color:#bd5d38

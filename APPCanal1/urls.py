@@ -21,7 +21,11 @@ Lista_personal,
 Update_Personal, 
 Update_dias, 
 Ver_dias,
+loginview,
+rigistrarse,
 )
+
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns =[
@@ -42,6 +46,9 @@ urlpatterns =[
     path('Buscar_dias', Buscar_dias, name="BuscarDias"),
     path('Buscar_Personal', Buscar_personal, name="BuscarPersonal"),
     path('BuscarP', BuscarP, name="BuscarP"),
+    path('Login', loginview, name="login"),
+    path('Registrarse', rigistrarse, name="Registrar"),
+    path('Logout', LogoutView.as_view(template_name="logout.html"), name="logout"),
    
 
 ]
