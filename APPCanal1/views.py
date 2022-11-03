@@ -39,7 +39,7 @@ def BuscarP(request):
 
 
 
-def Buscar_dias(request):
+def BuscarD(request):
     pass
     
 

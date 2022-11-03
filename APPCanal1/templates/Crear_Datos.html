@@ -5,10 +5,18 @@
 {% block contenidoQueCambia %}
         
    <div>
-       <button class = "cd"><a href="{% url 'CrearDias' %}">Cargar - Dias</a></button>
-       <button class = "cp"> <a href="{% url 'CreaPersonal' %}">Cargar - Personal</a></button>
-       <button class = "ch"> <a href="{% url 'CrearHoras' %}">Cargar - Horas</a></button>
-
+        <div>
+            <button class="cd"><a href="{% url 'CrearDias' %}"><img src="{% static 'assets/img/editar.ico' %}" alt=""> - Dias</a></button>
+            <p>Acá se cargan los Dias Trabajados</p>
+        </div>
+        <div>
+            <button class="cp"> <a href="{% url 'CreaPersonal' %}"><img src="{% static 'assets/img/editar.ico' %}" alt=""> - Personal</a></button>
+            <p>Acá se cargan Personal</p>
+        </div>
+       <div>
+            <button class="ch"> <a href="{% url 'CrearHoras' %}"><img src="{% static 'assets/img/editar.ico' %}" alt=""> - Horas</a></button>
+            <p>Acá se cargan las Horas Trabajadas</p>
+        </div>
    </div>
 
 {% endblock contenidoQueCambia %}

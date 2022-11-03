@@ -1,15 +1,14 @@
-{% comment %} {% extends 'index.html' %}
-
-{% load static %}
-
-{% block contenidoQueCambia %}
-        
-    <form action="{% url 'BuscarD' %}" method="GET">{% csrf_token %}
-
-        <p>Ingrese Dni para buscar los dias trabajados <input type="text" name="dni"></p>
-
-        <input type="submit" value="Buscar">
-
-    </form>
-
-{% endblock contenidoQueCambia %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Dias</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <h1 class="prox">PROXIMAMENTE</h1>
+</body>
+</html>

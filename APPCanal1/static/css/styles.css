@@ -61,7 +61,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #fff;
+  --bs-body-bg: rgb(8, 8, 8);
 }
 
 *,
@@ -117,6 +117,13 @@ h1, .h1 {
   h1, .h1 {
     font-size: 6rem;
   }
+}
+
+h1.prox{color: #974a2d;
+  font-size:150px;
+  padding-top:250px;
+  margin-left:-60px;
+  
 }
 
 h2, .h2 {
@@ -238,7 +245,7 @@ sup {
 
 a {
   color: #bd5d38;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: #974a2d;
@@ -339,13 +346,46 @@ button {
   border-radius: 0;
 }
 
-button.cd{ background-color: #f9ee98f5;
+button.bd{
+  background-color: black;
+  border: 0;
 }
 
-button.ch{ background-color: #f9ee98f5;
+button.bp{
+  background-color: black;
+  border: 0;
 }
 
-button.cp{ background-color: #ffd77b;
+button.del{
+  background-color: black;
+  border: 0;
+}
+
+button.ed{
+  background-color: black;
+  border: 0;
+}
+
+button.bpe{
+  background-color: black;
+  border: 0;
+}
+
+button.ep{
+  background-color: black;
+  border: 0;
+}
+
+button.cd{ 
+  background-color: black;
+}
+
+button.ch{
+  background-color: black;
+}
+
+button.cp{ 
+  background-color: black;
 }
 
 button:focus:not(:focus-visible) {
@@ -383,6 +423,9 @@ select:disabled {
   display: none;
 }
 
+input.act{
+  background-color:#bd5d38;
+}
 
 
 
@@ -549,6 +592,12 @@ progress {
   .display-6 {
     font-size: 2.5rem;
   }
+}
+
+li.lp{color:#bd5d38
+}
+
+li.lh{color:#bd5d38
 }
 
 .list-unstyled {

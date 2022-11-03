@@ -10,19 +10,16 @@
     <ul>
         
         {% for Persona in ListaPers %}
-            <li>
-                
-                {{Persona}}
-                
+            <li class="lp">
+                 {{Persona}}  
+                    <button class="bpe">
+                        <a href="{% url 'BorrarPersonal' Persona.id %}"><img src="{% static 'assets/img/papelera.ico' %}" alt=""></a>
+                    </button>
+                    <button class="ep">
+                        <a href="{% url 'UpdatePersonal' Persona.id %}"><img src="{% static 'assets/img/editar.ico' %}" alt=""></a>
+                    </button>
             </li>
-            <div>
-                <button>
-                    <a href="{% url 'BorrarPersonal' Persona.id %}">Eliminar</a>
-                </button>
-                <button>
-                    <a href="{% url 'UpdatePersonal' Persona.id %}">Editar</a>
-                </button>
-            </div>
+         
         {% endfor %}
             
     </ul>
