@@ -4,15 +4,19 @@ from django.urls import path
 
 
 from .views import (
+About,
 Borrar_Personal,
 Borrar_dias, 
 Buscar_datos, 
 Buscar_dias, 
 Buscar_personal, 
-BuscarP, 
+BuscarP,
+Cargar_Personal, 
 Crear_Datos, 
 Crear_Hora, 
-Crear_Personal, 
+Crear_Personal,
+Crear_User_PersonalCC,
+Crear_User_PersonalDXTV, 
 Crear_dias, 
 DiasList, 
 HorasList, 
@@ -21,6 +25,9 @@ Lista_personal,
 Update_Personal, 
 Update_dias, 
 Ver_dias,
+
+edit_avatar,
+editar_perfil,
 loginview,
 rigistrarse,
 )
@@ -47,8 +54,14 @@ urlpatterns =[
     path('Buscar_Personal', Buscar_personal, name="BuscarPersonal"),
     path('BuscarP', BuscarP, name="BuscarP"),
     path('Login', loginview, name="login"),
-    path('Registrarse', rigistrarse, name="Registrar"),
+    path('Registrarse', Cargar_Personal, name="Registrar"),
+    path('Editar_Perfil', editar_perfil, name="editarperfil"),
+    path('Crear_PersonalDXTV', Crear_User_PersonalDXTV, name="CreaPersonalDXTV"),
+    path('Crear_PersonalCC', Crear_User_PersonalCC, name="CreaPersonalCC"),    
+    path('Cargar_Personal', Cargar_Personal, name="CargarPersonalPage"),
     path('Logout', LogoutView.as_view(template_name="logout.html"), name="logout"),
-   
-
+    path('Editar_Avatar', edit_avatar, name="EditarAvatar"),
+    path('About', About, name="About"),
+    
+    
 ]

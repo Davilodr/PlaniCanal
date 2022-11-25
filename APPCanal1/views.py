@@ -1,23 +1,36 @@
 
 from django import forms
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from .models import Dias_trabajados, Horas_trabajadas, Personal
+
+from APPCanal1.form import AvatarForm, PersonalFormulario, UserEditForm
+from .models import Dias_trabajados, Horas_trabajadas, Personal, Avatar, PersonalCC, PersonalDXTV
 from django.views.generic import ListView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
-from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
+
 
 
 
 def Index(request):
-    return render(request, "index.html")
-@login_required
+         
+        avatar = Avatar.objects.get(user=request.user)
+        return render(request, "index.html", {"url": avatar.imagen.url})
+    
+
+def Cargar_Personal(request):
+    return render(request, "Cargar_Personal.html")
+
+def About(request):
+    return render(request, "About.html")
+    
+
 def Crear_Datos(request):
     return render(request, "Crear_Datos.html")
 
@@ -39,7 +52,7 @@ def BuscarP(request):
 
         dni_buscada = request.GET["dni"]
 
-        personal = Personal.objects.get(dni=dni_buscada)
+        personal = PersonalCC.objects.get(dni=dni_buscada)
 
         return render(request, "Resultado_BuscarP.html", {"Personal": personal, "Dni": dni_buscada})
 
@@ -49,8 +62,7 @@ def BuscarP(request):
         
         return HttpResponse(respuesta)
 
-def BuscarD(request):
-    pass
+
 
 def loginview(request):
     
@@ -104,7 +116,140 @@ def rigistrarse(request):
 
         return render(request, "registrarse.html", {"FormularioRegistro": Formularioregistro})
 
+def Crear_User_PersonalCC(request):
+    
+    if request.method == 'POST':
 
+        info = (request.POST)
+        
+        PersonalForm = PersonalFormulario(
+            {"nombre":info["nombre"],
+             "apellido":info["apellido"],
+             "dni":info["dni"],
+             "email":info["email"]}  
+        )
+        
+        userform = UserCreationForm(
+            {"username":info["username"],
+             "password1":info["password1"],
+             "password2":info["password2"]} 
+        )
+        
+        if PersonalForm.is_valid() and userform.is_valid():
+
+            data = PersonalForm.cleaned_data
+            
+            data.update(userform.cleaned_data)
+            
+            user = User(username = data["username"])
+            user.set_password(data["password1"])
+
+            Personal = PersonalCC(nombre=data['nombre'], apellido=data['apellido'], email=data['email'], dni=data['dni'], 
+            user_id=user)
+            
+            user.save()
+            Personal.save()
+                                   
+            return render(request, "index.html", {"mensaje": f'Perfil creado con exito'})
+        else:
+            return render(request, "index.html",{"mensaje": f'Error, formulario invalido'})      
+    else:
+
+        PersonalForm = PersonalFormulario()
+        
+        userform = UserCreationForm()
+
+        return render(request, "personal_formularioCC.html", {"personalform": PersonalForm, "userform": userform})
+
+def Crear_User_PersonalDXTV(request):
+    
+    if request.method == 'POST':
+
+        info = (request.POST)
+        
+        PersonalForm = PersonalFormulario(
+            {"nombre":info["nombre"],
+             "apellido":info["apellido"],
+             "dni":info["dni"],
+             "email":info["email"]}  
+        )
+        
+        userform = UserCreationForm(
+            {"username":info["username"],
+             "password1":info["password1"],
+             "password2":info["password2"]}
+        )
+        
+        if PersonalForm.is_valid() and userform.is_valid():
+
+            data = PersonalForm.cleaned_data
+            
+            data.update(userform.cleaned_data)
+                  
+            user = User(username = data["username"])
+            user.set_password(data["password1"])
+
+            Personal = PersonalDXTV(nombre=data['nombre'], apellido=data['apellido'], email=data['email'], dni=data['dni'], 
+            user_id=user)
+                   
+            user.save()
+            Personal.save()
+            
+            return render(request, "index.html", {"mensaje": f'Perfil creado con exito'})
+        else:
+            return render(request, "index.html",{"mensaje": f'Error, formulario invalido'})
+    else:
+
+        PersonalForm = PersonalFormulario()
+        
+        userform = UserCreationForm()
+
+        return render(request, "personal_formularioDXTV.html", {"personalform": PersonalForm, "userform": userform})
+
+@login_required
+def editar_perfil(request):
+    
+    usuario = request.user
+
+    if request.method == 'POST':
+            
+        editform = UserEditForm(request.POST)
+
+        if editform.is_valid():
+           
+            data = editform.cleaned_data
+            
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.set_password(data["password1"])
+        
+            usuario.save()
+
+            return render(request, "index.html", {"mensaje": f'Datos actualizados!'})
+        
+        return render(request, "index.html", {"mensaje": 'Contraseñas no coinciden'} )
+    
+    else:
+
+        editform = UserEditForm(instance=request.user)
+                      
+        return render(request, "editarPerfil.html", {"editform": editform})
+
+@login_required
+def edit_avatar(request):
+    profile = Avatar.objects.get(user=request.user)
+    if request.method == 'POST':
+        avatar = AvatarForm(request.POST, request.FILES, instance=profile)
+        if avatar.is_valid():
+            avatar.save(commit = False)
+            avatar.save()
+        return render(request, "index.html",{"mensaje": f'Avatar actualizado!'})
+    else:
+        avatar=AvatarForm()   
+     
+        return render(request, "editar_avatar.html", {"avatar":avatar})
+    
     
 
 class DiasList(LoginRequiredMixin, ListView):
@@ -190,10 +335,3 @@ class Borrar_Horas(LoginRequiredMixin, DeleteView):
     fields =('__all__')
     success_url = '/APPCanal1/Lista_Horas/'
     
-
-    
-
-
-
-
-
